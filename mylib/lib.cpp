@@ -1,7 +1,7 @@
 #include "lib.h"
 
 string Rle::compress(const string &input_str) {
-    int i = input_str.size();
+    unsigned int i = input_str.size();
     string letters;
 
     for (int j = 0; j < i; ++j) {
