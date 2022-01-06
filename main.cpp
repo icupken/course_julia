@@ -13,6 +13,7 @@ string path_input() {
     cin >> filename;
     return filename;
 }
+
 // функция считывания содержимого файла
 // в качестве типа данных используется картеж из int и string
 // т.к встроенная проверка ошибок в c++ ужасна,
@@ -29,6 +30,12 @@ tuple<int, string> read_file(const string &path) {
     }
     std::tuple<int, string> ret = {0, line};
     return ret;
+}
+
+int write_file(const string &path, const string &message) {
+    ofstream fout(path);
+    fout << message;
+    fout.close();
 }
 
 int main() {
@@ -53,6 +60,12 @@ int main() {
                 string after_compress = Rle::compress(non_compress);
                 cout << "До сжатия: " << non_compress << "\n"
                      << "После сжатия: " << after_compress << "\n";
+                cout << "Желаете сохранить результат? (1, 0)" << "\n";
+                cin >> choice;
+                if (choice == 1) {
+                    path = path_input();
+                    write_file(path, after_compress);
+                }
                 running = false;
             }
         } else if (choice == 2) {
@@ -67,6 +80,12 @@ int main() {
                 string after_decompress = Rle::decompress(compress_str);
                 cout << "До восстановления: " << compress_str << "\n"
                      << "После восстановления: " << after_decompress << "\n";
+                cout << "Желаете сохранить результат? (1, 0)" << "\n";
+                cin >> choice;
+                if (choice == 1) {
+                    path = path_input();
+                    write_file(path, after_decompress);
+                }
                 running = false;
             }
         } else {
