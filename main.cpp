@@ -36,6 +36,7 @@ int write_file(const string &path, const string &message) {
     ofstream fout(path);
     fout << message;
     fout.close();
+    return 0;
 }
 
 int main() {
